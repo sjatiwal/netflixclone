@@ -41,7 +41,7 @@ export const listReducer = (state = initialState, action: AnyAction) => {
         };
       }
 
-    case "REMOVE_CART_ITEM":
+    case "REMOVE_ADDED_MOVIE":
       return {
         ...state,
         myList: state.myList.filter((i) => i.id !== action.payload.id),
