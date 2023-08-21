@@ -36,10 +36,13 @@ userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
     next();
   }
-  this.password = crypto
-    .createHash("sha256")
-    .update(this.password)
-    .digest("hex");
+  if (typeof this.password === "string") {
+    // Check that password is a valid string
+    this.password = crypto
+      .createHash("sha256")
+      .update(this.password)
+      .digest("hex");
+  }
 });
 
 // Compare Password

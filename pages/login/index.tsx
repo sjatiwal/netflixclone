@@ -5,7 +5,7 @@ import "@styles/globals.css";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Router from "next/router";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "@helper/hooks";
 interface Inputs {
   email: string;
   password: string;
@@ -13,7 +13,7 @@ interface Inputs {
 
 function Login() {
   const [login, setLogin] = useState<boolean>(false);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
@@ -21,6 +21,9 @@ function Login() {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
+    if (!email || !password) {
+      return alert("Enter Email or password");
+    }
     if (login) {
       const response = await fetch("/api/profile/login", {
         method: "POST",

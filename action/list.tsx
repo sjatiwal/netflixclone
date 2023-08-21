@@ -1,14 +1,10 @@
 import { Movie } from "@typings";
-
+import { RootState } from "@store";
 export const addMovieToList =
   (movie: Movie) =>
   async (
     dispatch: (arg0: { type: string; payload: any }) => void,
-    getState: () => {
-      (): any;
-      new (): any;
-      list: { (): any; new (): any; myList: any };
-    }
+    getState: () => RootState
   ) => {
     const response = await fetch(
       `https://api.themoviedb.org/3/${

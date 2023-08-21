@@ -16,11 +16,10 @@ import ReactPlayer from "react-player/lazy";
 import { useRecoilState } from "recoil";
 import { modalState, movieState } from "@atoms/modalAtoms";
 import { Element, Genre, Movie } from "@typings";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "@helper/hooks";
 
 import { addMovieToList } from "@action/list";
 import { removeMovieFromList } from "@action/list";
-import { RootState } from "@store/reducers";
 
 function Modal() {
   const [showModal, setShowModal] = useRecoilState(modalState);
@@ -31,8 +30,8 @@ function Modal() {
   const [addedToList, setAddedToList] = useState(false);
   const [playing, setPlaying] = useState(true);
 
-  const dispatch = useDispatch();
-  const { myList } = useSelector((state: RootState) => state.list);
+  const dispatch = useAppDispatch();
+  const { myList } = useAppSelector((state) => state.list);
   // const toastStyle = {
   //   background: "white",
   //   color: "black",
